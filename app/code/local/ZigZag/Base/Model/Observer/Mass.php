@@ -26,7 +26,7 @@ class ZigZag_Base_Model_Observer_Mass
     {
         $this->_block->addItem('zigzag_mass_print_labels', array(
             'label' => Mage::helper('sales')->__('Print ZigZag Labels'),
-            'url' => $this->_block->getUrl('*/printzigzaglabel/mass')
+            'url' => $this->_block->getUrl('*/printzigzaglabel/index')
         ));
     }
 }
