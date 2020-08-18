@@ -1,0 +1,13 @@
+<config>
+    <modules>
+        <ZigZag_Base>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Sales />
+                <Mage_SalesRule />
+                <Mage_Shipping />
+            </depends>
+        </ZigZag_Base>
+    </modules>
+</config>

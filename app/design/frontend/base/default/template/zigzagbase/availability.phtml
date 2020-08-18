@@ -1,0 +1,30 @@
+<table class="zigzag-table">
+    <thead>
+    <tr>
+        <th></th>
+        <th><?php echo $this->__('Date') ?></th>
+        <th><?php echo $this->__('From') ?></th>
+        <th><?php echo $this->__('To') ?></th>
+        <th><?php echo $this->__('Comment') ?></th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($this->getAvailability() as $availability): ?>
+        <tr>
+            <td><input type="radio" class="radio"
+                       value="<?php echo $availability['date'] . '_' . $availability['time_from'] . '_' .  $availability['time_to']?>"
+                       name="zigzag-availability"></td>
+            <td class="zigzag-date"><?php echo $availability['date'] ?></td>
+            <td class="zigzag-time_from"><?php echo $availability['time_from'] ?></td>
+            <td class="zigzag-time_to"><?php echo $availability['time_to'] ?></td>
+            <td class="zigzag-comment"><?php echo $availability['comment'] ?></td>
+        </tr>
+    <?php endforeach; ?>
+    <tr>
+        <td>
+            <input type="radio" class="radio" value="-1" name="zigzag-availability">
+        </td>
+        <td colspan="4"><?php echo $this->__('Non of those options') ?></td>
+    </tr>
+    </tbody>
+</table>

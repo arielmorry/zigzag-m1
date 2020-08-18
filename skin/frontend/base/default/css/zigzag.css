@@ -1,0 +1,17 @@
+.zigzag-table td {
+    padding: 10px;
+    border-bottom: 1px solid;
+}
+
+.zigzag-table tr:last-child td {
+    border-bottom: 0 none;
+}
+
+#co-shipping-method-form .zigzag-table tr td input.radio,
+.zigzag-table tr td input {
+    margin: 0 10px;
+    float: none;
+    vertical-align: middle;
+}
+
+

@@ -1,0 +1,11 @@
+<config>
+    <modules>
+        <ZigZag_Reverse>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <ZigZag_Base />
+            </depends>
+        </ZigZag_Reverse>
+    </modules>
+</config>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <carriers>
+            <groups>
+                <zigzagbase translate="label">
+                    <label>ZigZag Base</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>900</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <username translate="label">
+                            <label>Username</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </username>
+                        <password translate="label">
+                            <label>Password</label>
+                            <frontend_type>password</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </password>
+                        <email translate="label">
+                            <label>Email To Notify About Errors</label>
+                            <comment>Leave empty to disable / Errors are also logged to Magento's log files.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>35</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email>
+                        <shipping_types translate="label">
+                            <label>Enabled Shipping Types By ZigZag</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>45</sort_order>
+                            <source_model>zigzagbase/config_source_shippingtypes</source_model>
+                            <frontend_model>zigzagbase/adminhtml_config_shippingtypes</frontend_model>
+                            <comment><model>zigzagbase/config_comment_shippingtypes</model></comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                        </shipping_types>
+                    </fields>
+                </zigzagbase>
+            </groups>
+        </carriers>
+    </sections>
+</config>
