@@ -5,49 +5,59 @@ class ZigZag_Base_Block_Adminhtml_Order_Label extends Mage_Adminhtml_Block_Templ
     /**
      * @var Mage_Sales_Model_Order
      */
-    protected $_order;
+    protected $_orders = [];
 
     protected function _construct()
     {
-        $orderId      = Mage::app()->getRequest()->getParam('order_id');
-        $this->_order = Mage::getModel('sales/order')->load($orderId);
+        $orderId = Mage::app()->getRequest()->getParam('order_id');
+        $orderIds = Mage::app()->getRequest()->getParam('order_ids');
+
+        if ($orderId) {
+            $this->_orders[] = Mage::getModel('sales/order')->load($orderId);
+        } elseif ($orderIds) {
+            foreach ($orderIds as $orderId) {
+                $this->_orders[] = Mage::getModel('sales/order')->load($orderId);
+            }
+        }
     }
 
     /**
+     * @param Mage_Sales_Model_Order $order
      * @return array
      */
-    public function getStoreInfo()
+    public function getStoreInfo($order)
     {
         return array(
-            'name'    => Mage::getStoreConfig(
+            'name' => Mage::getStoreConfig(
                 Mage_Core_Model_Store::XML_PATH_STORE_STORE_NAME,
-                $this->_order->getStoreId()
+                $order->getStoreId()
             ),
             'address' => Mage::getStoreConfig(
                 'general/store_information/address',
-                $this->_order->getStoreId()
+                $order->getStoreId()
             ),
-            'phone'   => Mage::getStoreConfig(
+            'phone' => Mage::getStoreConfig(
                 Mage_Core_Model_Store::XML_PATH_STORE_STORE_PHONE,
-                $this->_order->getStoreId()
+                $order->getStoreId()
             ),
         );
     }
 
     /**
+     * @param Mage_Sales_Model_Order $order
      * @return string
      * @throws Zend_Barcode_Exception
      */
-    public function getBarcodeBase64()
+    public function getBarcodeBase64($order)
     {
         $renderer = Zend_Barcode::factory(
             'code128',
             'image',
             [
-                'barHeight'     => 80,
+                'barHeight' => 80,
                 'barThickWidth' => 6,
-                'barThinWidth'  => 2,
-                'text'          => $this->getTrackingNumber()
+                'barThinWidth' => 2,
+                'text' => $this->getTrackingNumber($order)
             ]
         );
 
@@ -59,37 +69,36 @@ class ZigZag_Base_Block_Adminhtml_Order_Label extends Mage_Adminhtml_Block_Templ
     }
 
     /**
-     * @return Mage_Core_Model_Abstract
+     * @return array
      * @throws Exception
      */
-    public function getOrder()
+    public function getOrders()
     {
-        if (!$this->_order) {
-            $this->_order = Mage::getModel('sales/order')->load($this->getRequest()->getParam('order_id'));
-        }
-        return $this->_order;
+        return $this->_orders;
     }
 
     /**
+     * @param Mage_Sales_Model_Order $order
      * @return mixed
      * @throws Exception
      */
-    public function getShipmentType()
+    public function getShipmentType($order)
     {
         return Mage::helper('zigzagbase')->getShipmentCodeByCarrierCode(
-            $this->getOrder()->getShippingMethod(true)->getCarrierCode()
+            $order->getShippingMethod(true)->getCarrierCode()
         );
     }
 
     /**
+     * @param Mage_Sales_Model_Order $order
      * @return bool
      * @throws Exception
      */
-    public function getTrackingNumber()
+    public function getTrackingNumber($order)
     {
         $trackNumber = false;
-        if ($this->getOrder()->getTracksCollection()->count()) {
-            $trackNumber = $this->getOrder()->getTracksCollection()->getFirstItem()->getTrackNumber();
+        if ($order->getTracksCollection()->count()) {
+            $trackNumber = $order->getTracksCollection()->getFirstItem()->getTrackNumber();
         }
         return $trackNumber;
     }

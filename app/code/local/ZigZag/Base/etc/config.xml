@@ -104,6 +104,14 @@
 
     <adminhtml>
         <events>
+            <core_block_abstract_prepare_layout_before>
+                <observers>
+                    <newmodule_core_block_abstract_prepare_layout_before>
+                        <class>zigzagbase/observer_mass</class>
+                        <method>addMassAction</method>
+                    </newmodule_core_block_abstract_prepare_layout_before>
+                </observers>
+            </core_block_abstract_prepare_layout_before>
             <model_config_data_save_before>
                 <observers>
                     <zigzagbase_config>
