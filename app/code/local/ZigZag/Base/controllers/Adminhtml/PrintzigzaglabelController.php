@@ -1,6 +1,6 @@
 <?php
 
-class ZigZag_Base_IndexController extends Mage_Core_Controller_Front_Action
+class ZigZag_Base_Adminhtml_PrintzigzaglabelController extends Mage_Adminhtml_Controller_Action
 {
     public function indexAction()
     {

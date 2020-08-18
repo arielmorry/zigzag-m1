@@ -16,7 +16,7 @@ class ZigZag_Double_Model_Observer_Salesorderplaceafter
         if (Mage::helper('zigzagbase/shipping')->isCarrierInOrder($order, $model->getCarrierCode())) {
             $result = Mage::getModel('zigzagbase/service_ws_insertshipment')->insert($order, $model);
             if ($result) {
-                Mage::helper('zigzagbase/shipping')->shipOrder($order, $model, $result);
+                Mage::helper('zigzagbase/shipping')->shipOrder($order, $result);
             }
         }
 

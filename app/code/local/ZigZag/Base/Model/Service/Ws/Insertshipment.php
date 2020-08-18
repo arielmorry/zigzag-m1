@@ -14,21 +14,23 @@ class ZigZag_Base_Model_Service_Ws_Insertshipment extends ZigZag_Base_Model_Serv
      * @return string|void
      * @throws Zend_Http_Client_Exception
      */
-    public function insert($order, $carrier, $checkStatus = true)
+    public function insert($order, $carrier = null, $checkStatus = true)
     {
-        $orderStatus     = $order->getStatus();
-        $configStatuses  = Mage::helper('zigzagbase')->getConfig($carrier::ZIGZAG_SHIPPING_ORDER_STATUSES_PATH);
-        $allowedStatuses = array();
+        if ($carrier && $checkStatus) {
+            $orderStatus     = $order->getStatus();
+            $configStatuses  = Mage::helper('zigzagbase')->getConfig($carrier::ZIGZAG_SHIPPING_ORDER_STATUSES_PATH);
+            $allowedStatuses = array();
 
-        if ($configStatuses) {
-            $allowedStatuses = explode(',', $configStatuses);
+            if ($configStatuses) {
+                $allowedStatuses = explode(',', $configStatuses);
+            }
+
+            if (!in_array($orderStatus, $allowedStatuses)) {
+                return;
+            }
         }
 
-        if ($checkStatus && !in_array($orderStatus, $allowedStatuses)) {
-            return;
-        }
-
-        $shippingType = $carrier::ZIGZAG_SHIPPING_TYPE_CODE;
+        $shippingType = $carrier ? $carrier::ZIGZAG_SHIPPING_TYPE_CODE : 0;
         $shippingAddress = $order->getShippingAddress();
 
         $street = implode(' ', $shippingAddress->getStreet());

@@ -5,6 +5,7 @@
             <version>1.0.0</version>
         </ZigZag_Base>
     </modules>
+
     <global>
         <models>
             <zigzagbase>
@@ -60,6 +61,7 @@
             </zigzag_shipment_created>
         </events>
     </global>
+
     <frontend>
         <routers>
             <zigzag>
@@ -87,6 +89,19 @@
             </modules>
         </translate>
     </frontend>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <zigzag>ZigZag_Base_Adminhtml</zigzag>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
     <adminhtml>
         <events>
             <model_config_data_save_before>
@@ -101,21 +116,13 @@
                 <observers>
                     <zigzagbase_label>
                         <class>zigzagbase/observer_label</class>
-                        <method>addLabel</method>
+                        <method>addButtons</method>
                     </zigzagbase_label>
                 </observers>
             </controller_action_layout_render_before_adminhtml_sales_order_view>
-            <sales_order_shipment_save_before>
-                <observers>
-                    <zigzag_delivery_date_observer>
-                        <type>singleton</type>
-                        <class>zigzagbase/observer_shiporder</class>
-                        <method>shipOrder</method>
-                    </zigzag_delivery_date_observer>
-                </observers>
-            </sales_order_shipment_save_before>
         </events>
     </adminhtml>
+
     <default>
         <carriers>
             <zigzagbase>
