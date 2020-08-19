@@ -71,15 +71,16 @@ class ZigZag_Base_Model_Service_Ws_Insertshipment extends ZigZag_Base_Model_Serv
         ];
 
         $response = $this->doRequest($data);
-        return $this->parseResponse($response, $order);
+        return $this->parseResponse($response, $order, $data);
     }
 
     /**
      * @param $response
      * @param $order
+     * @param $data
      * @return string
      */
-    protected function parseResponse($response, $order)
+    protected function parseResponse($response, $order, $data)
     {
         $tracking = '';
         $code     = $response->getStatus();
@@ -97,12 +98,12 @@ class ZigZag_Base_Model_Service_Ws_Insertshipment extends ZigZag_Base_Model_Serv
                     Mage::helper('zigzagbase')->log('error', $msg, null, true);
                 }
             } catch (Exception $e) {
-                $msg = "Error Parsing Response for Insert Shipping to ZigZag\nError Code: {$e->getCode()}\nError Message: {$e->getMessage()}\nOrder Number: {$order->getIncrementId()}";
+                $msg = "Error Parsing Response for Insert Shipping to ZigZag\nError Code: {$e->getCode()}\nError Message: {$e->getMessage()}\nOrder Number: {$order->getIncrementId()}\nData Sent:\n" . print_r($data, true);
                 Mage::helper('zigzagbase')->log('error', $msg, null, true);
             }
         } else {
             $reason = $response->getMessage();
-            $msg    = "Error Getting Response for Insert Shipping to ZigZag\nError Code: $code\nReason: $reason\nOrder Number: {$order->getIncrementId()}";
+            $msg    = "Error Getting Response for Insert Shipping to ZigZag\nError Code: $code\nReason: $reason\nOrder Number: {$order->getIncrementId()}\nData Sent:\n" . print_r($data, true);
             Mage::helper('zigzagbase')->log('error', $msg, null, true);
         }
 
