@@ -9,19 +9,16 @@ class ZigZag_Base_Model_Config_Source_Orderstatus
      */
     public function toOptionArray()
     {
-        $ignore = [
-            Mage_Sales_Model_Order::STATE_CANCELED,
-            Mage_Sales_Model_Order::STATE_CLOSED,
-            Mage_Sales_Model_Order::STATE_COMPLETE,
-            Mage_Sales_Model_Order::STATUS_FRAUD,
-            Mage_Sales_Model_Order::STATE_HOLDED,
-            Mage_Paypal_Model_Info::ORDER_STATUS_CANCELED_REVERSAL,
-            Mage_Paypal_Model_Info::ORDER_STATUS_REVERSED,
+        $allow = [
+            Mage_Sales_Model_Order::STATE_NEW,
+            Mage_Sales_Model_Order::STATE_PENDING_PAYMENT,
+            Mage_Sales_Model_Order::STATE_PROCESSING,
+            Mage_Paypal_Model_Info::PAYMENTSTATUS_PENDING
         ];
 
         $options = Mage::getModel('sales/order_status')->getCollection()->toOptionArray();
         foreach ($options as $k => $option) {
-            if (in_array($option['value'], $ignore)) {
+            if (!in_array($option['value'], $allow)) {
                 unset($options[$k]);
             }
         }
