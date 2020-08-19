@@ -7,6 +7,7 @@ class ZigZag_Base_Model_Observer_Config
 {
     /**
      * @param $observer
+     * @return ZigZag_Base_Model_Observer_Config
      */
     public function setShippingTypes($observer)
     {
@@ -55,6 +56,8 @@ class ZigZag_Base_Model_Observer_Config
 
             $this->clearCacheAndReload();
         }
+
+        return $this;
     }
 
     /**

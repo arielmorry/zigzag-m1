@@ -5,6 +5,10 @@
  */
 class ZigZag_Base_Model_Observer_Shipmentcreated
 {
+    /**
+     * @param $observer
+     * @return $this
+     */
     public function setDeliveryTime($observer)
     {
         $order = $observer->getEvent()->getOrder();
@@ -23,5 +27,7 @@ class ZigZag_Base_Model_Observer_Shipmentcreated
         }
 
         $order->save();
+
+        return $this;
     }
 }

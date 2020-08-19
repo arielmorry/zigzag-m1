@@ -5,6 +5,10 @@
  */
 class ZigZag_Base_Model_Observer_Saveorder
 {
+    /**
+     * @param $observer
+     * @return $this
+     */
     public function setDeliveryTime($observer)
     {
         $event = $observer->getEvent();
@@ -19,5 +23,7 @@ class ZigZag_Base_Model_Observer_Saveorder
             $quote->setZigzagDeliveryFrom(null);
             $quote->setZigzagDeliveryTo(null);
         }
+
+        return $this;
     }
 }
