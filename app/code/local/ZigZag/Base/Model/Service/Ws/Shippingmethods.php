@@ -19,7 +19,7 @@ class ZigZag_Base_Model_Service_Ws_Shippingmethods extends ZigZag_Base_Model_Ser
     }
 
     /**
-     * @param $response
+     * @param Zend_Http_Response $response
      * @return array|SimpleXMLElement[]
      */
     protected function parseResponse($response)
@@ -42,6 +42,10 @@ class ZigZag_Base_Model_Service_Ws_Shippingmethods extends ZigZag_Base_Model_Ser
         } else {
             $reason = $response->getMessage();
             $msg    = "Error Getting Response for Shipping Types from ZigZag\nError Code: $code\nReason: $reason";
+            $body =  $response->getBody();
+            if ($body) {
+                $msg .= "\nResponse Body: $body";
+            }
             Mage::helper('zigzagbase')->log('error', $msg, null, true);
         }
 

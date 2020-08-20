@@ -23,7 +23,7 @@ class ZigZag_Base_Model_Service_Ws_Shipmentstatus extends ZigZag_Base_Model_Serv
     }
 
     /**
-     * @param $response
+     * @param Zend_Http_Response $response
      * @param string $trackingNumber
      * @return array|SimpleXMLElement[]
      */
@@ -48,6 +48,10 @@ class ZigZag_Base_Model_Service_Ws_Shipmentstatus extends ZigZag_Base_Model_Serv
         } else {
             $reason = $response->getReasonPhrase();
             $msg    = "Error Getting Response for Shipping Status from ZigZag\nError Code: $code\nReason: $reason\nTracking Number: $trackingNumber";
+            $body =  $response->getBody();
+            if ($body) {
+                $msg .= "\nResponse Body: $body";
+            }
             Mage::helper('zigzagbase')->log('error', $msg, null, true);
         }
 

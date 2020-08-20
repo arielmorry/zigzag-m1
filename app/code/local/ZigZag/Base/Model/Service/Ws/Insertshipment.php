@@ -52,7 +52,7 @@ class ZigZag_Base_Model_Service_Ws_Insertshipment extends ZigZag_Base_Model_Serv
             'MISPAR_BAIT_MOSER'      => 0,
             'koma_MOSER'             => '',
             'MEKABEL'                => $shippingAddress->getName(),
-            'HEVRA_MEKABEL'          => $shippingAddress->getCompany(),
+            'HEVRA_MEKABEL'          => $shippingAddress->getCompany() ? $shippingAddress->getCompany() : $shippingAddress->getName(),
             'TEL_MEKABEL'            => preg_replace('/[^0-9]/', '', $shippingAddress->getTelephone()),
             'EZOR_MEKABEL'           => 0,
             'SHM_EIR_MEKABEL'        => $shippingAddress->getCity(),
@@ -75,7 +75,7 @@ class ZigZag_Base_Model_Service_Ws_Insertshipment extends ZigZag_Base_Model_Serv
     }
 
     /**
-     * @param $response
+     * @param Zend_Http_Response $response
      * @param $order
      * @param $data
      * @return string
@@ -104,6 +104,10 @@ class ZigZag_Base_Model_Service_Ws_Insertshipment extends ZigZag_Base_Model_Serv
         } else {
             $reason = $response->getMessage();
             $msg    = "Error Getting Response for Insert Shipping to ZigZag\nError Code: $code\nReason: $reason\nOrder Number: {$order->getIncrementId()}\nData Sent:\n" . print_r($data, true);
+            $body =  $response->getBody();
+            if ($body) {
+                $msg .= "\nResponse Body: $body";
+            }
             Mage::helper('zigzagbase')->log('error', $msg, null, true);
         }
 
