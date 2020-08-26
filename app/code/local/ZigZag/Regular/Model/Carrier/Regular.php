@@ -54,7 +54,7 @@ class ZigZag_Regular_Model_Carrier_Regular
             $method->setMethod($this->_code);
             $method->setMethodTitle($this->getConfigData('name'));
 
-            $shippingCost = (float)$this->getConfigData('shipping_cost');
+            $shippingCost = $request->getFreeShipping() ? '0.00' : (float)$this->getConfigData('shipping_cost');
 
             $method->setPrice($shippingCost);
             $method->setCost($shippingCost);
