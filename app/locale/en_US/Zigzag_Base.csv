@@ -36,3 +36,6 @@ Title,Title
 "Receiver Type","סוג"
 "Receiver Regular","רגילה"
 "Shipment Billed Client","לקוח מחוייב"
+"Send Order To ZigZag","Send Order To ZigZag"
+"Print ZigZag Shipping Label","Print ZigZag Shipping Label"
+"Order Submission to ZigZag Can Take up to 10 sec per order. Please avoid large submissions to prevent timeout errors in your browser","Order Submission to ZigZag Can Take up to 10 sec per order. Please avoid large submissions to prevent timeout errors in your browser"

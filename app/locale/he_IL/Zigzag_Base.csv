@@ -35,4 +35,7 @@ Title,"כותרת"
 "Receiver Address","כתובת"
 "Receiver Type","סוג"
 "Receiver Regular","רגילה"
-"Shipment Billed Client","לקוח מחוייב"
+"Shipment Billed Client","לקוח מחוייב",
+"Send Order To ZigZag","שלח הזמנה לזיגזג"
+"Print ZigZag Shipping Label","הדפסת לייבלים למשלוחי זיגזג"
+"Order Submission to ZigZag Can Take up to 10 sec per order. Please avoid large submissions to prevent timeout errors in your browser","שליחת הזמנה לזיגזג יכולה להיערך עד 10 שניות. אנא המנע משליחה של כמות גדולה על מנת להימנע משגיאת Time Out בדפדפן"
