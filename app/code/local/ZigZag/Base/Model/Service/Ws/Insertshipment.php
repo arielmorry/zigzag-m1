@@ -41,11 +41,16 @@ class ZigZag_Base_Model_Service_Ws_Insertshipment extends ZigZag_Base_Model_Serv
             $houseNumber = 0;
         }
 
+        $ownerPhone = Mage::getStoreConfig(
+            Mage_Core_Model_Store::XML_PATH_STORE_STORE_PHONE,
+            $order->getStoreId()
+        );
+
         $data = [
             'KOD_KIVUN'              => 1,
             'MOSER'                  => '',
             'HEVRA_MOSER'            => '',
-            'TEL_MOSER'              => '',
+            'TEL_MOSER'              => $ownerPhone ? preg_replace('/[^0-9]/', '', $ownerPhone) : '',
             'EZOR_MOSER'             => 0,
             'SHM_EIR_MOSER'          => '',
             'REHOV_MOSER'            => '',

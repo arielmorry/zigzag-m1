@@ -2,7 +2,7 @@
 <config>
     <modules>
         <ZigZag_Base>
-            <version>1.0.3</version>
+            <version>1.1.0</version>
         </ZigZag_Base>
     </modules>
 
@@ -95,7 +95,7 @@
             <adminhtml>
                 <args>
                     <modules>
-                        <zigzag>ZigZag_Base_Adminhtml</zigzag>
+                        <zigzag before="Mage_Adminhtml">ZigZag_Base_Adminhtml</zigzag>
                     </modules>
                 </args>
             </adminhtml>
@@ -103,13 +103,20 @@
     </admin>
 
     <adminhtml>
+        <layout>
+            <updates>
+                <zigzag_base>
+                    <file>zigzagbase.xml</file>
+                </zigzag_base>
+            </updates>
+        </layout>
         <events>
             <core_block_abstract_prepare_layout_before>
                 <observers>
-                    <newmodule_core_block_abstract_prepare_layout_before>
+                    <zigzagbase_mass_action>
                         <class>zigzagbase/observer_mass</class>
                         <method>addMassAction</method>
-                    </newmodule_core_block_abstract_prepare_layout_before>
+                    </zigzagbase_mass_action>
                 </observers>
             </core_block_abstract_prepare_layout_before>
             <model_config_data_save_before>
@@ -128,6 +135,14 @@
                     </zigzagbase_label>
                 </observers>
             </controller_action_layout_render_before_adminhtml_sales_order_view>
+            <sales_order_grid_collection_load_before>
+                <observers>
+                    <zigzagbase_grid_tracking_number>
+                        <model>zigzagbase/observer_grid</model>
+                        <method>addTrackingToSalesCollection</method>
+                    </zigzagbase_grid_tracking_number>
+                </observers>
+            </sales_order_grid_collection_load_before>
         </events>
     </adminhtml>
 

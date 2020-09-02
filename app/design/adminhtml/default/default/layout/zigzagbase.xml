@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<layout>
+    <sales_order_grid_update_handle>
+        <reference name="sales_order.grid">
+            <action method="addColumnAfter">
+                <columnId>track</columnId>
+                <arguments>
+                    <header>ZigZag Tracking Number</header>
+                    <index>track</index>
+                    <filter_index>shipment_track.track_number</filter_index>
+                    <type>text</type>
+                </arguments>
+                <after>shipping_name</after>
+            </action>
+        </reference>
+    </sales_order_grid_update_handle>
+    <adminhtml_sales_order_grid>
+        <update handle="sales_order_grid_update_handle"/>
+    </adminhtml_sales_order_grid>
+    <adminhtml_sales_order_index>
+        <update handle="sales_order_grid_update_handle"/>
+    </adminhtml_sales_order_index>
+</layout>
