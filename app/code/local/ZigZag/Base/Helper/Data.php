@@ -50,6 +50,9 @@ class ZigZag_Base_Helper_Data extends Mage_Core_Helper_Abstract
         ];
 
         $msg = is_array($msg) ? print_r($msg, true) : $msg;
+        if ($e) {
+            $msg .= "Error Message:\n" . $e->getMessage();
+        }
         Mage::log((string)$msg, isset($levelMap[$level]) ? $levelMap[$level] : Zend_Log::ERR, 'zigzag.log', true);
         if ($sendEmail) {
             $this->sendErrorNotification($msg, $e);
