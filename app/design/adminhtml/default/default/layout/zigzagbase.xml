@@ -5,7 +5,7 @@
             <action method="addColumnAfter">
                 <columnId>track</columnId>
                 <arguments>
-                    <header>ZigZag Tracking Number</header>
+                    <header>Tracking Number</header>
                     <index>track</index>
                     <filter_index>shipment_track.track_number</filter_index>
                     <type>text</type>
