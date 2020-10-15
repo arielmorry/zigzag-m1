@@ -76,6 +76,10 @@ class ZigZag_Base_Model_Service_Ws_Insertshipment extends ZigZag_Base_Model_Serv
         ];
 
         $response = $this->doRequest($data);
+        if (!$response) {
+            Mage::getSingleton('core/session')->addError('An Error Occurred. Please check zigzag.log and other log files');
+            return;
+        }
         return $this->parseResponse($response, $order, $data);
     }
 

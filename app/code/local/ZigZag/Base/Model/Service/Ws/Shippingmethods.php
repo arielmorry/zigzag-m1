@@ -9,12 +9,16 @@ class ZigZag_Base_Model_Service_Ws_Shippingmethods extends ZigZag_Base_Model_Ser
 
     /**
      * @param $params
-     * @return mixed
+     * @return array|SimpleXMLElement[]|void
      * @throws Zend_Http_Client_Exception
      */
     public function get($params = [])
     {
         $response = $this->doRequest($params);
+        if (!$response) {
+            Mage::getSingleton('core/session')->addError('An Error Occurred. Please check zigzag.log and other log files');
+            return;
+        }
         return $this->parseResponse($response);
     }
 

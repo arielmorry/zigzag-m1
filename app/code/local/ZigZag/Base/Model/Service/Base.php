@@ -48,7 +48,7 @@ class ZigZag_Base_Model_Service_Base
             return $client->request();
 
         } catch (\Exception $e) {
-            $msg = "Error while making request to ZigZag";
+            $msg = "Error while making request to ZigZag \nRequest:\n{$client->getLastRequest()}\n Response:\n{$client->getLastResponse()}\n";
             Mage::helper('zigzagbase')->log('error', $msg, $e, true);
         }
     }

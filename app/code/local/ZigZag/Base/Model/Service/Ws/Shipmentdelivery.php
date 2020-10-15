@@ -10,7 +10,7 @@ class ZigZag_Base_Model_Service_Ws_Shipmentdelivery extends ZigZag_Base_Model_Se
     /**
      * @param Mage_Sales_Model_Order $order
      * @param string $trackingNumber
-     * @return bool|SimpleXMLElement[]
+     * @return bool|SimpleXMLElement[]|void
      * @throws Zend_Http_Client_Exception
      */
     public function set($order, $trackingNumber = '')
@@ -27,6 +27,10 @@ class ZigZag_Base_Model_Service_Ws_Shipmentdelivery extends ZigZag_Base_Model_Se
         ];
 
         $response = $this->doRequest($data);
+        if (!$response) {
+            Mage::getSingleton('core/session')->addError('An Error Occurred. Please check zigzag.log and other log files');
+            return;
+        }
         return $this->parseResponse($response, $order);
     }
 

@@ -9,7 +9,7 @@ class ZigZag_Base_Model_Service_Ws_Shipmentavailability extends ZigZag_Base_Mode
 
     /**
      * @param string $address
-     * @return array|SimpleXMLElement[]
+     * @return array|SimpleXMLElement[]|void
      * @throws Zend_Http_Client_Exception
      */
     public function get($address = '')
@@ -19,6 +19,10 @@ class ZigZag_Base_Model_Service_Ws_Shipmentavailability extends ZigZag_Base_Mode
         ];
 
         $response = $this->doRequest($data);
+        if (!$response) {
+            Mage::getSingleton('core/session')->addError('An Error Occurred. Please check zigzag.log and other log files');
+            return;
+        }
         return $this->parseResponse($response);
     }
 
