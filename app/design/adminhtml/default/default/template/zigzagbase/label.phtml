@@ -95,8 +95,8 @@ $orders          = $this->getOrders();
         <div class="sender-details m-b-50">
             <div class="row">
                 <strong><?php echo $this->__('Shipment Sender') ?>:</strong>
-                <span><?php echo $this->getStoreInfo($order)['name'] ?></span> -
-                <span><?php echo $this->getStoreInfo($order)['address'] ?></span>
+                <span><?php echo $this->getStoreInfo($order)['name'] ?></span>
+                <span><?php echo $this->getStoreInfo($order)['address'] ? ' - ' . $this->getStoreInfo($order)['address'] : '' ?></span>
             </div>
             <div class="row d-flex flex-justify-between">
                 <div class="phone">
