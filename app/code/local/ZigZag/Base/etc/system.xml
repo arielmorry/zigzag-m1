@@ -42,7 +42,9 @@
                             <sort_order>45</sort_order>
                             <source_model>zigzagbase/config_source_shippingtypes</source_model>
                             <frontend_model>zigzagbase/adminhtml_config_shippingtypes</frontend_model>
-                            <comment><model>zigzagbase/config_comment_shippingtypes</model></comment>
+                            <comment>
+                                <model>zigzagbase/config_comment_shippingtypes</model>
+                            </comment>
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>

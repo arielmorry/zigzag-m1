@@ -20,10 +20,10 @@ class ZigZag_Base_Model_Service_Ws_Shipmentdelivery extends ZigZag_Base_Model_Se
         $from = date('His', strtotime($order->getZigzagDeliveryFrom()));
         $to = date('His', strtotime($order->getZigzagDeliveryTo()));
         $data = [
-            'Numerator' => $trackingNumber,
-            'TaarichTeum' => $date,
+            'Numerator'    => $trackingNumber,
+            'TaarichTeum'  => $date,
             'FromTimeTeum' => $from,
-            'ToTimeTeum' => $to,
+            'ToTimeTeum'   => $to,
         ];
 
         $response = $this->doRequest($data);
@@ -48,7 +48,7 @@ class ZigZag_Base_Model_Service_Ws_Shipmentdelivery extends ZigZag_Base_Model_Se
                 $xml = str_replace('xmlns="Zigzag"', '', $response->getBody());
                 $sxe = new SimpleXMLElement($xml, LIBXML_NOWARNING);
                 $value = (string)$sxe;
-                if(is_numeric($value) && $value == 1) {
+                if (is_numeric($value) && $value == 1) {
                     $result = true;
                 } else {
                     $code = print_r($value, true);
@@ -61,8 +61,8 @@ class ZigZag_Base_Model_Service_Ws_Shipmentdelivery extends ZigZag_Base_Model_Se
             }
         } else {
             $reason = $response->getReasonPhrase();
-            $msg    = "Error Getting Response for Shipping Delivery Date Time to ZigZag\nError Code: $code\nReason: $reason\nOrder Number: {$order->getIncrementId()}";
-            $body =  $response->getBody();
+            $msg = "Error Getting Response for Shipping Delivery Date Time to ZigZag\nError Code: $code\nReason: $reason\nOrder Number: {$order->getIncrementId()}";
+            $body = $response->getBody();
             if ($body) {
                 $msg .= "\nResponse Body: $body";
             }

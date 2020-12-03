@@ -38,7 +38,7 @@ class ZigZag_Base_Model_Service_Ws_Shipmentstatus extends ZigZag_Base_Model_Serv
         if ($code == 200) {
             try {
                 $xml = str_replace('xmlns="Zigzag"', '', $response->getBody());
-                $sxe    = new SimpleXMLElement($xml, LIBXML_NOWARNING);
+                $sxe = new SimpleXMLElement($xml, LIBXML_NOWARNING);
                 $sxe->registerXPathNamespace('d', 'urn:schemas-microsoft-com:xml-diffgram-v1');
                 $tables = $sxe->xpath('//Table');
                 if (!$tables) {
@@ -51,8 +51,8 @@ class ZigZag_Base_Model_Service_Ws_Shipmentstatus extends ZigZag_Base_Model_Serv
             }
         } else {
             $reason = $response->getReasonPhrase();
-            $msg    = "Error Getting Response for Shipping Status from ZigZag\nError Code: $code\nReason: $reason\nTracking Number: $trackingNumber";
-            $body =  $response->getBody();
+            $msg = "Error Getting Response for Shipping Status from ZigZag\nError Code: $code\nReason: $reason\nTracking Number: $trackingNumber";
+            $body = $response->getBody();
             if ($body) {
                 $msg .= "\nResponse Body: $body";
             }

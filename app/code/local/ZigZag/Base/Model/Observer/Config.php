@@ -13,9 +13,9 @@ class ZigZag_Base_Model_Observer_Config
     {
         $config = $observer->getObject();
         if ($config->getSection() == 'carriers') {
-            $options             = [];
-            $username            = null;
-            $password            = null;
+            $options = [];
+            $username = null;
+            $password = null;
             $currentShippingType = Mage::helper('zigzagbase')->getConfig(ZigZag_Base_Model_Carrier_Zigzag::ZIGZAG_SHIPPING_TYPES_PATH);
 
             $groups = $config->getGroups();
@@ -39,7 +39,7 @@ class ZigZag_Base_Model_Observer_Config
                     $values = [];
                     foreach ($result as $optionId => $option) {
                         $options[] = ['value' => $optionId, 'label' => $option];
-                        $values[]  = $optionId;
+                        $values[] = $optionId;
                     }
                     $shippingTypeCodes = implode(',', $values);
                     if ($options && ($currentShippingType !== $shippingTypeCodes)) {

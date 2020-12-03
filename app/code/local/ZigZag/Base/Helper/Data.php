@@ -46,7 +46,7 @@ class ZigZag_Base_Helper_Data extends Mage_Core_Helper_Abstract
         $levelMap = [
             'error' => Zend_Log::ERR,
             'debug' => Zend_Log::DEBUG,
-            'info' => Zend_Log::INFO,
+            'info'  => Zend_Log::INFO,
         ];
 
         $msg = is_array($msg) ? print_r($msg, true) : $msg;
@@ -67,7 +67,7 @@ class ZigZag_Base_Helper_Data extends Mage_Core_Helper_Abstract
     {
         $from = $this->getConfig('trans_email/ident_general/email');
         $name = $this->getConfig('trans_email/ident_general/name');
-        $to   = $this->getConfig(ZigZag_Base_Model_Carrier_Zigzag::ZIGZAG_SHIPPING_EMAIL_PATH);
+        $to = $this->getConfig(ZigZag_Base_Model_Carrier_Zigzag::ZIGZAG_SHIPPING_EMAIL_PATH);
 
         $body = '<div><p>Message: ' . $msg . '</p>';
         if ($e) {
@@ -100,7 +100,7 @@ class ZigZag_Base_Helper_Data extends Mage_Core_Helper_Abstract
             $modelName = $code . '/carrier_' . str_replace('zigzag', '', $code);
             $carrierModel = Mage::getModel($modelName);
             if ($carrierModel) {
-                $shipmentCode  = (int)$carrierModel::ZIGZAG_SHIPPING_TYPE_CODE;
+                $shipmentCode = (int)$carrierModel::ZIGZAG_SHIPPING_TYPE_CODE;
                 $shipmentTypes = $this->getConfig(ZigZag_Base_Model_Carrier_Zigzag::ZIGZAG_SHIPPING_TYPES_FULL_PATH);
                 foreach (json_decode($shipmentTypes) as $shipmentType) {
                     if ($shipmentCode === $shipmentType->value) {

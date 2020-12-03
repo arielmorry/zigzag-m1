@@ -28,7 +28,7 @@ class ZigZag_Base_Block_Adminhtml_Order_Label extends Mage_Adminhtml_Block_Templ
     public function getStoreInfo($order)
     {
         return array(
-            'name' => Mage::getStoreConfig(
+            'name'    => Mage::getStoreConfig(
                 Mage_Core_Model_Store::XML_PATH_STORE_STORE_NAME,
                 $order->getStoreId()
             ),
@@ -36,7 +36,7 @@ class ZigZag_Base_Block_Adminhtml_Order_Label extends Mage_Adminhtml_Block_Templ
                 'general/store_information/address',
                 $order->getStoreId()
             ),
-            'phone' => Mage::getStoreConfig(
+            'phone'   => Mage::getStoreConfig(
                 Mage_Core_Model_Store::XML_PATH_STORE_STORE_PHONE,
                 $order->getStoreId()
             ),
@@ -54,10 +54,10 @@ class ZigZag_Base_Block_Adminhtml_Order_Label extends Mage_Adminhtml_Block_Templ
             'code128',
             'image',
             [
-                'barHeight' => 80,
+                'barHeight'     => 80,
                 'barThickWidth' => 6,
-                'barThinWidth' => 2,
-                'text' => $this->getTrackingNumber($order)
+                'barThinWidth'  => 2,
+                'text'          => $this->getTrackingNumber($order)
             ]
         );
 

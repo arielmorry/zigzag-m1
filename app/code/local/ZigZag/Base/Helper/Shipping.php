@@ -104,9 +104,9 @@ class ZigZag_Base_Helper_Shipping extends Mage_Core_Helper_Abstract
 
         $tracking = Mage::getModel('shipping/tracking_result_status');
         $tracking->setData([
-            'carrier' => $code,
+            'carrier'       => $code,
             'carrier_title' => $title,
-            'tracking' => $trackingNumber,
+            'tracking'      => $trackingNumber,
             'track_summary' => $status
         ]);
         return $tracking;

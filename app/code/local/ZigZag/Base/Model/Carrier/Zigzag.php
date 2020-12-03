@@ -1,8 +1,6 @@
 <?php
 
-class ZigZag_Base_Model_Carrier_Zigzag
-    extends Mage_Shipping_Model_Carrier_Abstract
-    implements Mage_Shipping_Model_Carrier_Interface
+class ZigZag_Base_Model_Carrier_Zigzag extends Mage_Shipping_Model_Carrier_Abstract implements Mage_Shipping_Model_Carrier_Interface
 {
     /**
      * @var string

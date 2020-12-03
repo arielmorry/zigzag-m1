@@ -29,7 +29,7 @@ class ZigZag_Base_Model_Observer_Mass
         /** @var Mage_Adminhtml_Block_Widget_Grid_Massaction $block */
         $block->addItem('zigzag_mass_print_labels', array(
             'label' => Mage::helper('sales')->__('Print ZigZag Shipping Labels'),
-            'url' => $block->getUrl('*/printzigzaglabel/index')
+            'url'   => $block->getUrl('*/printzigzaglabel/index')
         ));
     }
 
@@ -40,8 +40,8 @@ class ZigZag_Base_Model_Observer_Mass
     {
         /** @var Mage_Adminhtml_Block_Widget_Grid_Massaction $block */
         $block->addItem('zigzag_mass_submission', array(
-            'label' => Mage::helper('sales')->__('Send Orders To ZigZag'),
-            'url' => $block->getUrl('*/shiporderzigzag/mass'),
+            'label'   => Mage::helper('sales')->__('Send Orders To ZigZag'),
+            'url'     => $block->getUrl('*/shiporderzigzag/mass'),
             'confirm' => Mage::helper('sales')->__('Order Submission to ZigZag Can Take up to 10 sec per order. Please avoid large submissions to prevent timeout errors in your browser')
         ));
     }

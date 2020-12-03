@@ -1,4 +1,5 @@
 <?php
+
 class ZigZag_Base_Model_Config_Comment_Shippingtypes extends Mage_Core_Model_Config_Data
 {
     public function getCommentText(Mage_Core_Model_Config_Element $element, $currentValue)

@@ -15,7 +15,7 @@ class ZigZag_Reverse_Model_Config_Source_Yesno
         ];
 
         if ($isEnabled) {
-            $options[] =  ['value' => 1, 'label' => Mage::helper('adminhtml')->__('Yes')];
+            $options[] = ['value' => 1, 'label' => Mage::helper('adminhtml')->__('Yes')];
         }
         return $options;
     }
@@ -33,7 +33,7 @@ class ZigZag_Reverse_Model_Config_Source_Yesno
         ];
 
         if ($isEnabled) {
-            $options[1] =  Mage::helper('adminhtml')->__('Yes');
+            $options[1] = Mage::helper('adminhtml')->__('Yes');
         }
         return $options;
     }

@@ -4,8 +4,8 @@ class ZigZag_Base_AvailabilityController extends Mage_Core_Controller_Front_Acti
 {
     public function indexAction()
     {
-        $address =  Mage::app()->getRequest()->getParam('target');
-        $countryId =  Mage::app()->getRequest()->getParam('country_id');
+        $address = Mage::app()->getRequest()->getParam('target');
+        $countryId = Mage::app()->getRequest()->getParam('country_id');
         $country = Mage::getModel('directory/country')->loadByCode($countryId)->getName();
 
         $result = Mage::getModel('zigzagbase/service_ws_shipmentavailability')->get($address . ' ' . $country);

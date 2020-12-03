@@ -36,9 +36,9 @@ class ZigZag_Base_Model_Observer_Label
             array('order_id' => $order->getId())
         );
         $this->_block->addButton('order_send_to_zigzag', array(
-            'label' => Mage::helper('sales')->__('Send Order To ZigZag'),
-            'onclick'   => 'setLocation(\'' . $url . '\')',
-            'class' => 'print-label'
+            'label'   => Mage::helper('sales')->__('Send Order To ZigZag'),
+            'onclick' => 'setLocation(\'' . $url . '\')',
+            'class'   => 'print-label'
         ));
     }
 
@@ -54,9 +54,9 @@ class ZigZag_Base_Model_Observer_Label
                 array('order_id' => $order->getId())
             );
             $this->_block->addButton('order_print_zigzag_label', array(
-                'label' => Mage::helper('sales')->__('Print ZigZag Shipping Label'),
+                'label'   => Mage::helper('sales')->__('Print ZigZag Shipping Label'),
                 'onclick' => "window.open('$url','popUpWindow','height=700,width=700,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes');",
-                'class' => 'print-label'
+                'class'   => 'print-label'
             ));
         }
     }

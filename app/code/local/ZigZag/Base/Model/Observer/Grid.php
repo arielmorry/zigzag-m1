@@ -9,7 +9,7 @@ class ZigZag_Base_Model_Observer_Grid
     public function addTrackingToSalesCollection($observer)
     {
         $separator = '<br>';
-        $action    = Mage::app()->getRequest()->getActionName();
+        $action = Mage::app()->getRequest()->getActionName();
         if ($action == 'exportCsv' || $action == 'exportExcel') {
             $separator = '|';
         }
@@ -33,7 +33,7 @@ class ZigZag_Base_Model_Observer_Grid
         if ($where = $select->getPart(Zend_Db_Select::WHERE)) {
             foreach ($where as $key => $condition) {
                 if (strpos($condition, '`created_at`')) {
-                    $where[$key]   = str_replace('`created_at`', new Zend_Db_Expr('`main_table`.`created_at`'), $condition);;
+                    $where[$key] = str_replace('`created_at`', new Zend_Db_Expr('`main_table`.`created_at`'), $condition);;
                 }
             }
 

@@ -33,19 +33,19 @@ class ZigZag_Base_Model_Service_Ws_Shipmentavailability extends ZigZag_Base_Mode
     protected function parseResponse($response)
     {
         $options = [];
-        $code     = $response->getStatus();
+        $code = $response->getStatus();
         if ($code == 200) {
             try {
                 $xml = str_replace('xmlns="Zigzag"', '', $response->getBody());
-                $sxe    = new SimpleXMLElement($xml, LIBXML_NOWARNING);
+                $sxe = new SimpleXMLElement($xml, LIBXML_NOWARNING);
                 $sxe->registerXPathNamespace('d', 'urn:schemas-microsoft-com:xml-diffgram-v1');
                 $tables = $sxe->xpath('//Table');
                 foreach ($tables as $t) {
                     $options[] = [
-                        'date' => (string)$t->TAARIH,
+                        'date'      => (string)$t->TAARIH,
                         'time_from' => date('H:i', strtotime((string)$t->MSHAA)),
-                        'time_to' => date('H:i', strtotime((string)$t->AD_SHAA)),
-                        'comment' => (string)$t->AAROT,
+                        'time_to'   => date('H:i', strtotime((string)$t->AD_SHAA)),
+                        'comment'   => (string)$t->AAROT,
                     ];
                 }
             } catch (Exception $e) {
@@ -54,8 +54,8 @@ class ZigZag_Base_Model_Service_Ws_Shipmentavailability extends ZigZag_Base_Mode
             }
         } else {
             $reason = $response->getMessage();
-            $msg    = "Error Getting Response for Shipping Availability By Address from ZigZag\nError Code: $code\nReason: $reason";
-            $body =  $response->getBody();
+            $msg = "Error Getting Response for Shipping Availability By Address from ZigZag\nError Code: $code\nReason: $reason";
+            $body = $response->getBody();
             if ($body) {
                 $msg .= "\nResponse Body: $body";
             }

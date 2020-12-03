@@ -37,7 +37,7 @@ class ZigZag_Base_Adminhtml_ShiporderzigzagController extends Mage_Adminhtml_Con
                 $result = Mage::getModel('zigzagbase/service_ws_insertshipment')->insert($order);
                 if ($result) {
                     Mage::helper('zigzagbase/shipping')->shipOrder($order, $result);
-                    $successOrders[] = 'Incremented Id: ' . $order->getIncrementId() . ' Tracking Number: ' .  $result;
+                    $successOrders[] = 'Incremented Id: ' . $order->getIncrementId() . ' Tracking Number: ' . $result;
                 } else {
                     $errorOrders[] = 'Incremented Id: ' . $order->getIncrementId() . ' Please Check Error Log';
                 }
