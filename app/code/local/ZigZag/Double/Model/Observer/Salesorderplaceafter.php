@@ -9,7 +9,8 @@ class ZigZag_Double_Model_Observer_Salesorderplaceafter
      * @param $observer
      * @return $this
      */
-    public function shipOrder($observer){
+    public function shipOrder($observer)
+    {
         /** @var Mage_Sales_Model_Order $order */
         $order = $observer->getEvent()->getOrder();
         $model = Mage::getModel('zigzagdouble/carrier_double');

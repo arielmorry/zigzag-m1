@@ -8,7 +8,7 @@ class ZigZag_Base_Model_Service_Ws_Insertshipment extends ZigZag_Base_Model_Serv
     const WS_ENDPOINT = 'INSERT_SHLIHUT';
 
     /**
-     * @param $order
+     * @param Mage_Sales_Model_Order $order
      * @param $carrier
      * @param bool $checkStatus
      * @return string|void
@@ -17,8 +17,8 @@ class ZigZag_Base_Model_Service_Ws_Insertshipment extends ZigZag_Base_Model_Serv
     public function insert($order, $carrier = null, $checkStatus = true)
     {
         if ($carrier && $checkStatus) {
-            $orderStatus     = $order->getStatus();
-            $configStatuses  = Mage::helper('zigzagbase')->getConfig($carrier::ZIGZAG_SHIPPING_ORDER_STATUSES_PATH);
+            $orderStatus = $order->getStatus();
+            $configStatuses = Mage::helper('zigzagbase')->getConfig($carrier::ZIGZAG_SHIPPING_ORDER_STATUSES_PATH);
             $allowedStatuses = array();
 
             if ($configStatuses) {
@@ -35,7 +35,7 @@ class ZigZag_Base_Model_Service_Ws_Insertshipment extends ZigZag_Base_Model_Serv
 
         $street = implode(' ', $shippingAddress->getStreet());
         preg_match('!\d+!', $street, $matches);
-        if(isset($matches[0]) && $matches[0]){
+        if (isset($matches[0]) && $matches[0]) {
             $houseNumber = $matches[0];
         } else {
             $houseNumber = 0;
@@ -67,7 +67,7 @@ class ZigZag_Base_Model_Service_Ws_Insertshipment extends ZigZag_Base_Model_Serv
             'SUG_SHLIHUT'            => $shippingType,
             'HEAROT'                 => '',
             'SHEM_MAZMIN'            => '',
-            'MICROSOFT_ORDER_NUMBER' => '',
+            'MICROSOFT_ORDER_NUMBER' => $order->getIncrementId(),
             'HEAROT_LKTOVET_MKOR'    => '',
             'HEAROT_LKTOVET_YAAD'    => '',
             'SHEM_CHEVRA'            => '',
@@ -92,18 +92,18 @@ class ZigZag_Base_Model_Service_Ws_Insertshipment extends ZigZag_Base_Model_Serv
     protected function parseResponse($response, $order, $data)
     {
         $tracking = '';
-        $code     = $response->getStatus();
+        $code = $response->getStatus();
         if ($code == 200) {
             try {
-                $xml   = str_replace('xmlns="Zigzag"', '', $response->getBody());
-                $sxe   = new SimpleXMLElement($xml, LIBXML_NOWARNING);
+                $xml = str_replace('xmlns="Zigzag"', '', $response->getBody());
+                $sxe = new SimpleXMLElement($xml, LIBXML_NOWARNING);
                 $value = (string)$sxe;
                 if (strlen($value) > 4) {
                     $tracking = $value;
                     Mage::dispatchEvent('zigzag_shipment_created', ['order' => $order, 'tracking_number' => $tracking]);
                 } else {
                     $code = print_r($value, true);
-                    $msg  = "Error Code Response for Insert Shipping to ZigZag\nResponse From ZigZag: $code";
+                    $msg = "Error Code Response for Insert Shipping to ZigZag\nResponse From ZigZag: $code";
                     Mage::helper('zigzagbase')->log('error', $msg, null, true);
                 }
             } catch (Exception $e) {
@@ -112,8 +112,8 @@ class ZigZag_Base_Model_Service_Ws_Insertshipment extends ZigZag_Base_Model_Serv
             }
         } else {
             $reason = $response->getMessage();
-            $msg    = "Error Getting Response for Insert Shipping to ZigZag\nError Code: $code\nReason: $reason\nOrder Number: {$order->getIncrementId()}\nData Sent:\n" . print_r($data, true);
-            $body =  $response->getBody();
+            $msg = "Error Getting Response for Insert Shipping to ZigZag\nError Code: $code\nReason: $reason\nOrder Number: {$order->getIncrementId()}\nData Sent:\n" . print_r($data, true);
+            $body = $response->getBody();
             if ($body) {
                 $msg .= "\nResponse Body: $body";
             }
