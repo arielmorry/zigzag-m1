@@ -32,15 +32,7 @@ class ZigZag_Base_Model_Service_Ws_Insertshipment extends ZigZag_Base_Model_Serv
 
         $shippingType = $carrier ? $carrier::ZIGZAG_SHIPPING_TYPE_CODE : 0;
         $shippingAddress = $order->getShippingAddress();
-
         $street = implode(' ', $shippingAddress->getStreet());
-        preg_match('!\d+!', $street, $matches);
-        if (isset($matches[0]) && $matches[0]) {
-            $houseNumber = $matches[0];
-        } else {
-            $houseNumber = 0;
-        }
-
         $ownerPhone = Mage::getStoreConfig(
             Mage_Core_Model_Store::XML_PATH_STORE_STORE_PHONE,
             $order->getStoreId()
@@ -50,7 +42,7 @@ class ZigZag_Base_Model_Service_Ws_Insertshipment extends ZigZag_Base_Model_Serv
             'KOD_KIVUN'              => 1,
             'MOSER'                  => '',
             'HEVRA_MOSER'            => '',
-            'TEL_MOSER'              => $ownerPhone ? preg_replace('/[^0-9]/', '', $ownerPhone) : '',
+            'TEL_MOSER'              => $ownerPhone ? preg_replace('/\D/', '', $ownerPhone) : '',
             'EZOR_MOSER'             => 0,
             'SHM_EIR_MOSER'          => '',
             'REHOV_MOSER'            => '',
