@@ -38,7 +38,7 @@ class ZigZag_Base_Model_Observer_Label
         $this->_block->addButton('order_send_to_zigzag', array(
             'label'   => Mage::helper('sales')->__('Send Order To ZigZag'),
             'onclick' => 'setLocation(\'' . $url . '\')',
-            'class'   => 'print-label'
+            'class'   => 'ship-to-zigzag'
         ));
     }
 

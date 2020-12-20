@@ -5,6 +5,7 @@ class ZigZag_Base_Model_Observer_Grid
     /**
      * @param $observer
      * @return ZigZag_Base_Model_Observer_Grid
+     * @throws Zend_Db_Select_Exception
      */
     public function addTrackingToSalesCollection($observer)
     {

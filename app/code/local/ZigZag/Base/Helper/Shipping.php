@@ -48,11 +48,12 @@ class ZigZag_Base_Helper_Shipping extends Mage_Core_Helper_Abstract
                 $shipment->save();
                 $shipment->getOrder()->save();
 
-                // Add Notification and Tracking
-                $title = $order->getShippingDescription();
-                if (defined(get_class($carrier) . '::ZIGZAG_SHIPPING_NAME_PATH')) {
-                    $title = Mage::helper('zigzagbase')->getConfig($carrier::ZIGZAG_SHIPPING_NAME_PATH);
-                }
+            }
+
+            // Add Notification and Tracking
+            $title = $order->getShippingDescription();
+            if (defined(get_class($carrier) . '::ZIGZAG_SHIPPING_NAME_PATH')) {
+                $title = Mage::helper('zigzagbase')->getConfig($carrier::ZIGZAG_SHIPPING_NAME_PATH);
             }
 
             $track = Mage::getModel('sales/order_shipment_track')
